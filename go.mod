@@ -1,4 +1,4 @@
-module zk-rawdata-reader
+module github.com/zerok-ai/zk-rawdata-reader
 
 go 1.20
 

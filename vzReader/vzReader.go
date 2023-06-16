@@ -2,17 +2,14 @@ package vzReader
 
 import (
 	"fmt"
-)
-
-import (
-	"context"
 	"strings"
-	"zk-rawdata-reader/vzReader/utils"
 
+	"context"
+	"github.com/zerok-ai/zk-rawdata-reader/vzReader/utils"
 	"px.dev/pixie/src/api/go/pxapi"
 )
 
-// VzReader /* VzReader is a struct that contains the configuration for the Vizier client */
+// VzReader is a struct that contains the configuration for the Vizier client
 type VzReader struct {
 	CloudAddr   string // px.avinpx08.getanton.com:443
 	DirectVzId  string // 42f54f46-6e0f-46d7-bdab-6f5f66e0c7ff
@@ -22,7 +19,7 @@ type VzReader struct {
 	ctx      context.Context
 }
 
-/* getScriptStr returns the pxl script as string for the given protocol after applying the template */
+// getScriptStr returns the pxl script as string for the given protocol after applying the template
 func getScriptStr(scriptFilePath string, traceIds []string, startTime string) (string, error) {
 	traceStrList := strings.Join(traceIds, "\", \"")
 	templateValues := utils.TemplateValues{}
@@ -31,7 +28,7 @@ func getScriptStr(scriptFilePath string, traceIds []string, startTime string) (s
 	return utils.ResolveFileDataAsTemplate(scriptFilePath, templateValues)
 }
 
-/* getVzClient returns a new Vizier client */
+// getVzClient returns a new Vizier client
 func getVzClient(config *VzReader) (*pxapi.VizierClient, error) {
 	client, err := pxapi.NewClient(config.ctx, pxapi.WithAPIKey(config.DirectVzKey),
 		pxapi.WithCloudAddr(config.CloudAddr))
@@ -42,7 +39,7 @@ func getVzClient(config *VzReader) (*pxapi.VizierClient, error) {
 	return client.NewVizierClient(config.ctx, config.DirectVzId)
 }
 
-/* executeScript executes the given script and returns the result */
+// executeScript executes the given script and returns the result
 func executeScript(vizierClient *pxapi.VizierClient, ctx context.Context, scriptStr string, tm pxapi.TableMuxer) (*pxapi.ScriptResults, error) {
 	resultSet, err := vizierClient.ExecuteScript(ctx, scriptStr, tm)
 	if err != nil {
@@ -59,12 +56,12 @@ func executeScript(vizierClient *pxapi.VizierClient, ctx context.Context, script
 	return result, nil
 }
 
-/* Init initializes the VzReader */
+// Init initializes the VzReader struct
 func (config *VzReader) Init() error {
 
-	/* TODO: Populate CloudAddr, DirectVzId, DirectVzKey from Operator API if not present. */
+	// TODO: Populate CloudAddr, DirectVzId, DirectVzKey from Operator API if not present.
 
-	/* Create context and VizierClient */
+	// Create context and VizierClient for the given config
 	config.ctx = context.Background()
 	vizierClient, err := getVzClient(config)
 	if err != nil {

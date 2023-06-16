@@ -3,15 +3,16 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"zk-rawdata-reader/vzReader"
+	"github.com/zerok-ai/zk-rawdata-reader/vzReader"
 )
 
 func main() {
-	reader := vzReader.VzReader{}
-	reader.CloudAddr = "px.avinpx07.getanton.com:443"
-	reader.DirectVzId = "94711f31-f693-46be-91c3-832c0f64b12f"
-	reader.DirectVzKey = "px-api-ce1bbae5-49c7-4d81-99e2-0d11865bb5df"
-
+	reader := vzReader.VzReader{
+		CloudAddr:   "px.avinpx07.getanton.com:443",
+		DirectVzId:  "94711f31-f693-46be-91c3-832c0f64b12f",
+		DirectVzKey: "px-api-ce1bbae5-49c7-4d81-99e2-0d11865bb5df",
+	}
+	
 	err := reader.Init()
 	if err != nil {
 		fmt.Printf("Failed to init reader, err: %v\n", err)

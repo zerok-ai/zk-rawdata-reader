@@ -1,6 +1,6 @@
 package vzReader
 
-/* Protocol is an enum for the different protocols that can be used to get raw data */
+// Protocol is an enum for the different protocols that can be used to get raw data
 type Protocol string
 
 const (
@@ -8,7 +8,7 @@ const (
 	MySQL Protocol = "MySQL"
 )
 
-/* mapping for pxl files location relative to package root. */
+// mapping for pxl files location relative to package root.
 var filePathPrefix = "/vzReader/pxl"
 
 var protocolMapping = map[Protocol]string{

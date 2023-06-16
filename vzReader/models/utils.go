@@ -2,9 +2,9 @@ package models
 
 import (
 	"encoding/json"
+	"github.com/zerok-ai/zk-rawdata-reader/vzReader/utils"
 	"px.dev/pixie/src/api/go/pxapi/types"
 	"px.dev/pixie/src/api/proto/vizierpb"
-	"zk-rawdata-reader/vzReader/utils"
 )
 
 func ConvertPixieDataToItemStore[itemType ItemType](r *types.Record) itemType {
