@@ -49,13 +49,13 @@ func (s *ItemMapMux[itemType]) ExecutePxlScript(ctx context.Context, vz *pxapi.V
 	return resultSet, nil
 }
 
-type PixieHTTPResponse[T ItemType] struct {
+type TraceResponse[T ItemType] struct {
 	ResultStats *pxapi.ResultsStats `json:"stats"`
 	Results     []T                 `json:"results"`
 }
 
-func PixieResponseToHTTPResponse[T ItemType](results *pxapi.ScriptResults, mux *ItemMapMux[T]) *PixieHTTPResponse[T] {
-	resp := PixieHTTPResponse[T]{}
+func VzResponseToTraceResponse[T ItemType](results *pxapi.ScriptResults, mux *ItemMapMux[T]) *TraceResponse[T] {
+	resp := TraceResponse[T]{}
 	if results != nil {
 		resp.ResultStats = results.Stats()
 	}
