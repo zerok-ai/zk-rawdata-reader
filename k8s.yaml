@@ -1,0 +1,40 @@
+# Write a deployment yaml file for kubernetes using image chakko:latest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chakko-deployment
+  labels:
+    app: chakko
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          app: chakko
+    template:
+        metadata:
+          labels:
+              app: chakko
+        spec:
+          containers:
+          - name: chakko
+            command: ["sleep"]
+            args: ["infinity"]
+            imagePullPolicy: Always
+            image: shivamnagar/golang-test:latest
+            ports:
+            - containerPort: 8080
+
+---
+# Create a service to expose deployement above on port 8080
+apiVersion: v1
+kind: Service
+metadata:
+  name: chakko-service
+spec:
+    selector:
+        app: chakko
+    ports:
+        - protocol: TCP
+          port: 8080
+          targetPort: 8080
+    type: LoadBalancer
