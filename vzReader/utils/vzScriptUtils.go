@@ -3,7 +3,7 @@ package utils
 import (
 	"bytes"
 	"fmt"
-	"os"
+	"github.com/zerok-ai/zk-rawdata-reader/vzReader/pxl"
 	"text/template"
 
 	"px.dev/pixie/src/api/go/pxapi"
@@ -15,16 +15,10 @@ type TemplateValues struct {
 	StartTime string
 }
 
-func ResolveFileDataAsTemplate(filePath string, tx TemplateValues) (string, error) {
-	path, err := os.Getwd()
+func ResolveFileDataAsTemplate(fileName string, tx TemplateValues) (string, error) {
+	dat, err := pxl.GetPxlFileContent(fileName)
 	if err != nil {
-		println("failed to get working dir")
-		return "", nil
-	}
-
-	dat, err := os.ReadFile(path + filePath)
-	if err != nil {
-		fmt.Printf("failed to get script file content %s\n", path+filePath)
+		fmt.Printf("failed to get script file content %s\n", fileName)
 		return "", nil
 	}
 	templateStr := template.New("Template")

@@ -20,12 +20,12 @@ type VzReader struct {
 }
 
 // getScriptStr returns the pxl script as string for the given protocol after applying the template
-func getScriptStr(scriptFilePath string, traceIds []string, startTime string) (string, error) {
+func getScriptStr(scriptFileName string, traceIds []string, startTime string) (string, error) {
 	traceStrList := strings.Join(traceIds, "\", \"")
 	templateValues := utils.TemplateValues{}
 	templateValues.TraceIds = traceStrList
 	templateValues.StartTime = startTime
-	return utils.ResolveFileDataAsTemplate(scriptFilePath, templateValues)
+	return utils.ResolveFileDataAsTemplate(scriptFileName, templateValues)
 }
 
 // getVzClient returns a new Vizier client

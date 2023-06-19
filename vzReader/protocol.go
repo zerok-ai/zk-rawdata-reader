@@ -8,9 +8,6 @@ const (
 	MySQL Protocol = "MySQL"
 )
 
-// mapping for pxl files location relative to package root.
-var filePathPrefix = "/vzReader/pxl"
-
 var protocolMapping = map[Protocol]string{
-	HTTP: filePathPrefix + "/getHTTPRawDataForTraces.pxl",
+	HTTP: "getHTTPRawDataForTraces.pxl",
 }
