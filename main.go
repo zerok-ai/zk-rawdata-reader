@@ -12,7 +12,7 @@ func main() {
 		DirectVzId:  "94711f31-f693-46be-91c3-832c0f64b12f",
 		DirectVzKey: "px-api-ce1bbae5-49c7-4d81-99e2-0d11865bb5df",
 	}
-	
+
 	err := reader.Init()
 	if err != nil {
 		fmt.Printf("Failed to init reader, err: %v\n", err)
@@ -20,7 +20,7 @@ func main() {
 	}
 
 	startTime := "-30m"
-	traceIds := []string{"03e2a65ac1654e9d91a4f288d2ccadee", "193a67aa0fb2d76ce9d1024539c3cfba", "229e637ca64c0cff0ae2f5effc0fdf40"}
+	traceIds := []string{"0993ac14ad4eb454eb0bf7559b646682", "0eba241de441af9c2c8873c1c75e9fb6", "1385e0516ff5b6d6d5ca509bdf5cda57"}
 	data, err := reader.GetHTTPRawData(traceIds, startTime)
 	if err != nil {
 		fmt.Printf("Failed to get raw data, err: %v\n", err)

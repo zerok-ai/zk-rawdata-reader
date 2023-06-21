@@ -17,7 +17,8 @@ def http_data(df):
     # Order columns.
     df = df['source', 'destination', 'latency', 'req_path',
             'req_method', 'req_headers', 'req_body', 'resp_status',
-            'resp_message', 'resp_headers', 'resp_body', 'trace_id']
+            'resp_message', 'resp_headers', 'resp_body', 'trace_id',
+            'span_id']
 
     return df
 

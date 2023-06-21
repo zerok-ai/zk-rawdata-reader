@@ -13,4 +13,5 @@ type HTTP_raw_data struct {
 	RespHeaders string `json:"resp_headers"`
 	RespBody    string `json:"resp_body"`
 	TraceId     string `json:"trace_id"`
+	SpanId      string `json:"span_id"`
 }
