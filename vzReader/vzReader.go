@@ -2,6 +2,7 @@ package vzReader
 
 import (
 	"fmt"
+	zk_operator "github.com/zerok-ai/zk-rawdata-reader/vzReader/api/zk-operator"
 	"strings"
 
 	"context"
@@ -11,9 +12,9 @@ import (
 
 // VzReader is a struct that contains the configuration for the Vizier client
 type VzReader struct {
-	CloudAddr   string // px.avinpx08.getanton.com:443
-	DirectVzId  string // 42f54f46-6e0f-46d7-bdab-6f5f66e0c7ff
-	DirectVzKey string // px-api-ef2df548-1b59-44be-8e48-ab098809694d
+	CloudAddr   string
+	DirectVzId  string
+	DirectVzKey string
 
 	vzClient *pxapi.VizierClient
 	ctx      context.Context
@@ -59,7 +60,17 @@ func executeScript(vizierClient *pxapi.VizierClient, ctx context.Context, script
 // Init initializes the VzReader struct
 func (config *VzReader) Init() error {
 
-	// TODO: Populate CloudAddr, DirectVzId, DirectVzKey from Operator API if not present.
+	// Populate CloudAddr, DirectVzId, DirectVzKey from Operator API if not present.
+	if config.CloudAddr == "" || config.DirectVzId == "" || config.DirectVzKey == "" {
+		fmt.Printf("CloudAddr, DirectVzId, DirectVzKey cannot be empty\n")
+		clusterContext, err := zk_operator.GetClusterContext()
+		if err != nil {
+			return err
+		}
+		config.DirectVzId = clusterContext.ClusterId
+		config.DirectVzKey = clusterContext.ClusterKey
+		config.CloudAddr = clusterContext.CloudAddr
+	}
 
 	// Create context and VizierClient for the given config
 	config.ctx = context.Background()

@@ -7,11 +7,7 @@ import (
 )
 
 func main() {
-	reader := vzReader.VzReader{
-		CloudAddr:   "px.avinpx07.getanton.com:443",
-		DirectVzId:  "94711f31-f693-46be-91c3-832c0f64b12f",
-		DirectVzKey: "px-api-ce1bbae5-49c7-4d81-99e2-0d11865bb5df",
-	}
+	reader := vzReader.VzReader{}
 
 	err := reader.Init()
 	if err != nil {
@@ -20,7 +16,7 @@ func main() {
 	}
 
 	startTime := "-30m"
-	traceIds := []string{"0993ac14ad4eb454eb0bf7559b646682", "0eba241de441af9c2c8873c1c75e9fb6", "1385e0516ff5b6d6d5ca509bdf5cda57"}
+	traceIds := []string{"loadtest31CA66B2809A1328292126BA", "loadtest4551B1D31EE68AB61C2F641B", "loadtest56BC003751C65BB8B7088835"}
 	data, err := reader.GetHTTPRawData(traceIds, startTime)
 	if err != nil {
 		fmt.Printf("Failed to get raw data, err: %v\n", err)
