@@ -8,7 +8,6 @@ import (
 
 func main() {
 	reader := vzReader.VzReader{}
-
 	err := reader.Init()
 	if err != nil {
 		fmt.Printf("Failed to init reader, err: %v\n", err)
@@ -16,7 +15,7 @@ func main() {
 	}
 
 	startTime := "-30m"
-	traceIds := []string{"loadtest31CA66B2809A1328292126BA", "loadtest4551B1D31EE68AB61C2F641B", "loadtest56BC003751C65BB8B7088835"}
+	traceIds := []string{"loadtest1DFED08C71A1892B3EC26275", "loadtest1F7ED52CACC342BA8DF01601", "loadtest2AAAC9D8E0438EA42B641C4B"}
 	data, err := reader.GetHTTPRawData(traceIds, startTime)
 	if err != nil {
 		fmt.Printf("Failed to get raw data, err: %v\n", err)

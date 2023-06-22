@@ -7,13 +7,14 @@ import (
 	"px.dev/pixie/src/api/proto/vizierpb"
 )
 
-func ConvertPixieDataToItemStore[itemType ItemType](r *types.Record) itemType {
+func ConvertPixieDataToItemStore[itemType ItemType](records *types.Record) itemType {
 	var itemStore itemType
 	mapObject := map[string]interface{}{}
-	for i := 0; i < len(r.Data); i++ {
-		tag := r.TableMetadata.ColInfo[i].Name
-		datatypeName := vizierpb.DataType_name[int32(r.TableMetadata.ColInfo[i].Type)]
-		value := utils.GetDataByIdx(tag, datatypeName, r)
+	recordCount := len(records.Data)
+	for i := 0; i < recordCount; i++ {
+		tag := records.TableMetadata.ColInfo[i].Name
+		datatypeName := vizierpb.DataType_name[int32(records.TableMetadata.ColInfo[i].Type)]
+		value := utils.GetDataByIdx(tag, datatypeName, records)
 		mapObject[tag] = value
 	}
 

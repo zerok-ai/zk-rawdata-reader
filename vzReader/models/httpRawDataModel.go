@@ -1,6 +1,6 @@
 package models
 
-type HTTP_raw_data struct {
+type HttpRawDataModel struct {
 	Source      string `json:"source"`
 	Destination string `json:"destination"`
 	Latency     string `json:"latency"`
