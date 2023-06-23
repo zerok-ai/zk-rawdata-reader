@@ -8,7 +8,8 @@ import (
 )
 
 type ItemType interface {
-	string | HTTP_raw_data
+	// Will need to maintain a list of all the models in this type interface
+	HttpRawDataModel
 }
 
 func New[itemType ItemType]() *ItemMapMux[itemType] {
