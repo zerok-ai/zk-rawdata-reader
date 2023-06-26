@@ -14,4 +14,5 @@ type HttpRawDataModel struct {
 	RespBody    string `json:"resp_body"`
 	TraceId     string `json:"trace_id"`
 	SpanId      string `json:"span_id"`
+	WorkloadIds string `json:"workload_ids"`
 }
