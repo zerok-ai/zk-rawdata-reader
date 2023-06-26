@@ -3,7 +3,7 @@ package vzReader
 import (
 	"context"
 	"fmt"
-	zk_operator "github.com/zerok-ai/zk-rawdata-reader/vzReader/api/zk-operator"
+	operatorAPIHandler "github.com/zerok-ai/zk-rawdata-reader/vzReader/api/zk-operator"
 	"px.dev/pixie/src/api/go/pxapi"
 )
 
@@ -22,7 +22,7 @@ func (config *VzReader) Init() error {
 	// Populate CloudAddr, ClusterId, ClusterKey from Operator API if not present.
 	if config.CloudAddr == "" || config.ClusterId == "" || config.ClusterKey == "" {
 		fmt.Printf("CloudAddr, ClusterId, ClusterKey cannot be empty\n")
-		clusterContext, err := zk_operator.GetClusterContext()
+		clusterContext, err := operatorAPIHandler.New().GetClusterContext()
 		if err != nil {
 			return err
 		}

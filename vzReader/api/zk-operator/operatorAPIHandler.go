@@ -7,7 +7,18 @@ import (
 	"github.com/zerok-ai/zk-rawdata-reader/vzReader/api/utils"
 )
 
-func GetClusterContext() (*models.ClusterContext, error) {
+type OperatorAPIHandler interface {
+	GetClusterContext() (*models.ClusterContext, error)
+}
+
+type operatorAPIHandler struct {
+}
+
+func New() OperatorAPIHandler {
+	return &operatorAPIHandler{}
+}
+
+func (c *operatorAPIHandler) GetClusterContext() (*models.ClusterContext, error) {
 	url := clusterContextURL
 	method := clusterContextMethod
 
