@@ -41,3 +41,7 @@ func (config *VzReader) Init() error {
 	config.vzClient = vizierClient
 	return nil
 }
+
+func (config *VzReader) Close() {
+	config.vzClient = nil
+}
