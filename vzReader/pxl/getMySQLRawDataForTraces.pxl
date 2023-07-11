@@ -1,13 +1,13 @@
 import px
 
-def http_data(df):
+
+def mysql_data(df):
+
     # Filter out data only for requested trace_ids
     df = df[px.equals_any(df.trace_id, ["{{.TraceIds}}"])]
 
-    # Add context.
-    df.node = df.ctx['node']
-    df.pid = px.upid_to_pid(df.upid)
     df = add_source_dest_columns(df)
+
     df = add_source_dest_links(df, "{{.StartTime}}")
 
     # Pick the required fields from JSON
@@ -19,24 +19,21 @@ def http_data(df):
     df = df[px.length(df.destination) > 0 and px.length(df.source) > 0]
     df.time_ = px.time_to_int64(df.time_)
 
-
-    # Order columns.
-    df = df['source', 'destination', 'latency', 'req_path',
-            'req_method', 'req_headers', 'req_body', 'resp_status',
-            'resp_message', 'resp_headers', 'resp_body', 'trace_id',
-            'span_id', 'workload_ids', 'time_']
+    df = df[['time_', 'source', 'destination', 'remote_port', 'req_cmd',
+            'req_body', 'resp_status', 'resp_body', 'latency', 'trace_id',
+            'span_id', 'workload_ids']]
 
     return df
 
 
 def add_source_dest_columns(df):
-    ''' Add source and destination columns for the HTTP request.
+    ''' Add source and destination columns for the MySQL request.
 
-    HTTP requests are traced server-side (trace_role==2), unless the server is
+    MySQL requests are traced server-side (trace_role==2), unless the server is
     outside of the cluster in which case the request is traced client-side (trace_role==1).
 
-    When trace_role==2, the HTTP request source is the remote_addr column
-    and destination is the pod column. When trace_role==1, the HTTP request
+    When trace_role==2, the MySQL request source is the remote_addr column
+    and destination is the pod column. When trace_role==1, the MySQL request
     source is the pod column and the destination is the remote_addr column.
 
     Input DataFrame must contain trace_role, upid, remote_addr columns.
@@ -103,6 +100,6 @@ def add_source_dest_links(df, start_time: str):
 
     return df
 
-df = px.DataFrame(table='http_events', start_time="{{.StartTime}}")
-df = http_data(df)
+df = px.DataFrame(table='mysql_events', start_time="{{.StartTime}}")
+df = mysql_data(df)
 px.display(df)

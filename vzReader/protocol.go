@@ -9,5 +9,6 @@ const (
 )
 
 var protocolMapping = map[Protocol]string{
-	HTTP: "getHTTPRawDataForTraces.pxl",
+	HTTP:  "getHTTPRawDataForTraces.pxl",
+	MySQL: "getMySQLRawDataForTraces.pxl",
 }

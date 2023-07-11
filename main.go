@@ -7,16 +7,21 @@ import (
 )
 
 func main() {
-	reader := vzReader.VzReader{}
+	reader := vzReader.VzReader{
+		CloudAddr:  "px.avinpx07.getanton.com:443",
+		ClusterId:  "94711f31-f693-46be-91c3-832c0f64b12f",
+		ClusterKey: "px-api-ce1bbae5-49c7-4d81-99e2-0d11865bb5df",
+	}
 	err := reader.Init()
 	if err != nil {
 		fmt.Printf("Failed to init reader, err: %v\n", err)
 		return
 	}
 
-	startTime := "-30m"
-	traceIds := []string{"loadtest1DFED08C71A1892B3EC26275", "loadtest1F7ED52CACC342BA8DF01601", "loadtest2AAAC9D8E0438EA42B641C4B"}
-	data, err := reader.GetHTTPRawData(traceIds, startTime)
+	startTime := "-1h"
+	traceIds := []string{"aaaaaaaa2b6d74208abab57c82002141"}
+	data, err := reader.GetMySQLRawData(traceIds, startTime)
+	//data, err := reader.GetHTTPRawData(traceIds, startTime)
 	if err != nil {
 		fmt.Printf("Failed to get raw data, err: %v\n", err)
 		return

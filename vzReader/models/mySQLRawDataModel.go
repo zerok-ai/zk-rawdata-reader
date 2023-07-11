@@ -1,16 +1,13 @@
 package models
 
-type HttpRawDataModel struct {
+type MySQLRawDataModel struct {
 	Source      string  `json:"source"`
 	Destination string  `json:"destination"`
 	Latency     float64 `json:"latency"`
-	ReqPath     string  `json:"req_path"`
-	ReqMethod   string  `json:"req_method"`
-	ReqHeaders  string  `json:"req_headers"`
+	RemotePort  int     `json:"remote_port"`
+	ReqCmd      int     `json:"req_cmd"`
 	ReqBody     string  `json:"req_body"`
-	RespStatus  string  `json:"resp_status"`
-	RespMessage string  `json:"resp_message"`
-	RespHeaders string  `json:"resp_headers"`
+	RespStatus  int     `json:"resp_status"`
 	RespBody    string  `json:"resp_body"`
 	TraceId     string  `json:"trace_id"`
 	SpanId      string  `json:"span_id"`
