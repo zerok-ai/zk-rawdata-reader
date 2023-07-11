@@ -19,8 +19,10 @@ func main() {
 	}
 
 	startTime := "-1h"
-	traceIds := []string{"aaaaaaaa2b6d74208abab57c82002141"}
-	data, err := reader.GetMySQLRawData(traceIds, startTime)
+	traceIds := []string{"aaaaaaaa6cc7f6e9e8c424f49b524199"}
+
+	data, err := reader.GetPgSQLRawData(traceIds, startTime)
+	//data, err := reader.GetMySQLRawData(traceIds, startTime)
 	//data, err := reader.GetHTTPRawData(traceIds, startTime)
 	if err != nil {
 		fmt.Printf("Failed to get raw data, err: %v\n", err)
