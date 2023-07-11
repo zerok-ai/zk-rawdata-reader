@@ -3,7 +3,7 @@ package models
 type MySQLRawDataModel struct {
 	Source      string  `json:"source"`
 	Destination string  `json:"destination"`
-	Latency     float64 `json:"latency"`
+	Latency     float32 `json:"latency"`
 	RemotePort  int     `json:"remote_port"`
 	ReqCmd      int     `json:"req_cmd"`
 	ReqBody     string  `json:"req_body"`

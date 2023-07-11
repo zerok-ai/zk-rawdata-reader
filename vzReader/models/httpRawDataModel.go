@@ -3,7 +3,7 @@ package models
 type HttpRawDataModel struct {
 	Source      string  `json:"source"`
 	Destination string  `json:"destination"`
-	Latency     float64 `json:"latency"`
+	Latency     float32 `json:"latency"`
 	ReqPath     string  `json:"req_path"`
 	ReqMethod   string  `json:"req_method"`
 	ReqHeaders  string  `json:"req_headers"`
