@@ -14,9 +14,10 @@ def http_data(df):
     df.source = px.pluck(df.source, 'label')
     df.destination = px.pluck(df.destination, 'label')
 
+    # TODO: Improve the logic for getting source and destination services.
     df.source = px.pod_name_to_deployment_name(df.source)
     df.destination = px.pod_name_to_deployment_name(df.destination)
-    df = df[px.length(df.destination) > 0 and px.length(df.source) > 0]
+
     df.time_ = px.time_to_int64(df.time_)
 
 
