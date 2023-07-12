@@ -8,7 +8,7 @@ type HttpRawDataModel struct {
 	ReqMethod   string  `json:"req_method"`
 	ReqHeaders  string  `json:"req_headers"`
 	ReqBody     string  `json:"req_body"`
-	RespStatus  string  `json:"resp_status"`
+	RespStatus  int64   `json:"resp_status"`
 	RespMessage string  `json:"resp_message"`
 	RespHeaders string  `json:"resp_headers"`
 	RespBody    string  `json:"resp_body"`
