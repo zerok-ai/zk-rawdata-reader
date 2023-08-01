@@ -18,6 +18,9 @@ def mysql_data(df):
     df.source = px.pod_name_to_deployment_name(df.source)
     df.destination = px.pod_name_to_deployment_name(df.destination)
 
+    # ignore records with empty destination. (i.e. destination that's not resolved as a pod above)
+    df = df[px.length(df.destination) > 0]
+
     df.time_ = px.time_to_int64(df.time_)
 
     df = df[['time_', 'source', 'destination', 'remote_port', 'req_cmd',

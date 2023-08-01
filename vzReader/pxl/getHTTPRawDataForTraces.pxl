@@ -20,7 +20,6 @@ def http_data(df):
 
     df.time_ = px.time_to_int64(df.time_)
 
-
     # Order columns.
     df = df['source', 'destination', 'latency', 'req_path',
             'req_method', 'req_headers', 'req_body', 'resp_status',
