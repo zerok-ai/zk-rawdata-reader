@@ -24,7 +24,7 @@ def http_data(df):
     df = df['source', 'destination', 'latency', 'req_path',
             'req_method', 'req_headers', 'req_body', 'resp_status',
             'resp_message', 'resp_headers', 'resp_body', 'trace_id',
-            'span_id', 'workload_ids', 'time_']
+            'req_body_size', 'resp_body_size', 'span_id', 'workload_ids', 'time_']
 
     return df
 

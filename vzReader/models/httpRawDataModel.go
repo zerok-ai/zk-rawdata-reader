@@ -1,19 +1,21 @@
 package models
 
 type HttpRawDataModel struct {
-	Source      string  `json:"source"`
-	Destination string  `json:"destination"`
-	Latency     float32 `json:"latency"`
-	ReqPath     string  `json:"req_path"`
-	ReqMethod   string  `json:"req_method"`
-	ReqHeaders  string  `json:"req_headers"`
-	ReqBody     string  `json:"req_body"`
-	RespStatus  int     `json:"resp_status"`
-	RespMessage string  `json:"resp_message"`
-	RespHeaders string  `json:"resp_headers"`
-	RespBody    string  `json:"resp_body"`
-	TraceId     string  `json:"trace_id"`
-	SpanId      string  `json:"span_id"`
-	WorkloadIds string  `json:"workload_ids"`
-	Time        uint64  `json:"time"`
+	Source       string  `json:"source"`
+	Destination  string  `json:"destination"`
+	Latency      float32 `json:"latency"`
+	ReqPath      string  `json:"req_path"`
+	ReqMethod    string  `json:"req_method"`
+	ReqHeaders   string  `json:"req_headers"`
+	ReqBody      string  `json:"req_body"`
+	RespStatus   int     `json:"resp_status"`
+	RespMessage  string  `json:"resp_message"`
+	RespHeaders  string  `json:"resp_headers"`
+	RespBody     string  `json:"resp_body"`
+	ReqBodySize  uint64  `json:"req_body_size"`
+	RespBodySize uint64  `json:"resp_body_size"`
+	TraceId      string  `json:"trace_id"`
+	SpanId       string  `json:"span_id"`
+	WorkloadIds  string  `json:"workload_ids"`
+	Time         uint64  `json:"time"`
 }
