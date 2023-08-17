@@ -25,7 +25,7 @@ def mysql_data(df):
 
     df = df[['time_', 'source', 'destination', 'remote_port', 'req_cmd',
             'req_body', 'resp_status', 'resp_body', 'latency', 'trace_id',
-            'span_id', 'workload_ids']]
+            'span_id', 'workload_ids', 'rows', 'is_truncated' ]]
 
     return df
 

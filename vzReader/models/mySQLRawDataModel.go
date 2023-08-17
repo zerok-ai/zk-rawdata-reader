@@ -12,5 +12,7 @@ type MySQLRawDataModel struct {
 	TraceId     string  `json:"trace_id"`
 	SpanId      string  `json:"span_id"`
 	WorkloadIds string  `json:"workload_ids"`
+	IsTruncated bool    `json:"is_truncated"`
+	Rows        int     `json:"rows"`
 	Time        uint64  `json:"time"`
 }
