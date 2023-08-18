@@ -20,7 +20,7 @@ def pgsql_data(df):
     df.time_ = px.time_to_int64(df.time_)
 
     df = df[['time_', 'source', 'destination', 'remote_port', 'req_cmd', 'req', 'resp',
-            'latency', 'trace_id', 'span_id', 'workload_ids']]
+            'latency', 'trace_id', 'span_id', 'workload_ids', 'is_truncated']]
 
     return df
 
