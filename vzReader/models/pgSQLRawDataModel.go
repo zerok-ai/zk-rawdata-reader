@@ -4,6 +4,7 @@ type PgSQLRawDataModel struct {
 	Source      string  `json:"source"`
 	Destination string  `json:"destination"`
 	RemotePort  int     `json:"remote_port"`
+	ReqCmd      int     `json:"req_cmd"`
 	Req         string  `json:"req"`
 	Resp        string  `json:"resp"`
 	Latency     float32 `json:"latency"`
