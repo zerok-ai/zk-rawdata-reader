@@ -26,7 +26,7 @@ def http_data(df):
     df.req_body = px.substring(df.resp_body, 0, px.length(df.req_body) - 1)
 
     # Order columns.
-    df = df['source', 'destination', 'latency', 'req_path',
+    df = df['source_ip', 'dest_ip', 'source', 'destination', 'latency', 'req_path',
             'req_method', 'req_headers', 'req_body', 'resp_status',
             'resp_message', 'resp_headers', 'resp_body', 'trace_id', 'is_truncated',
             'req_body_size', 'resp_body_size', 'span_id', 'workload_ids', 'time_']
@@ -61,6 +61,9 @@ def add_source_dest_columns(df):
     # Set source and destination based on trace_role.
     df.source = px.select(df.is_server_tracing, df.ra_name, df.pod)
     df.destination = px.select(df.is_server_tracing, df.pod, df.ra_name)
+
+    df.source_ip = px.pod_name_to_pod_ip(df.source)
+    df.dest_ip = px.pod_name_to_pod_ip(df.destination)
 
     df = df.drop(['ra_pod', 'is_ra_pod', 'ra_name', 'is_server_tracing'])
 
