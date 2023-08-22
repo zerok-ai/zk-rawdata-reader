@@ -4,13 +4,25 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/zerok-ai/zk-rawdata-reader/vzReader"
+	"github.com/zerok-ai/zk-rawdata-reader/vzReader/models"
 )
 
+type datatype struct {
+	models.HttpRawDataModel
+	models.MySQLRawDataModel
+	models.PgSQLRawDataModel
+}
+
 func main() {
+	//reader := vzReader.VzReader{
+	//	CloudAddr:  "px.loadcloud01.getanton.com:443",
+	//	ClusterId:  "49b97eb5-42bb-4863-9982-fb5d24808a63",
+	//	ClusterKey: "px-api-b5dd5d79-549e-4d65-bf4f-5a7f8840ced1",
+	//}
 	reader := vzReader.VzReader{
-		CloudAddr:  "px.avinpx07.getanton.com:443",
-		ClusterId:  "94711f31-f693-46be-91c3-832c0f64b12f",
-		ClusterKey: "px-api-ce1bbae5-49c7-4d81-99e2-0d11865bb5df",
+		CloudAddr:  "px.devcloud01.getanton.com:443",
+		ClusterId:  "6c213fb3-a773-4d8b-b0ad-d6e1b720da6f",
+		ClusterKey: "px-api-e0593597-de51-44cd-bc72-6cbdb881b2be",
 	}
 	err := reader.Init()
 	if err != nil {
@@ -18,16 +30,12 @@ func main() {
 		return
 	}
 
-	startTime := "-1h"
-	traceIds := []string{"aaaaaaaa6cc7f6e9e8c424f49b524199"}
+	startTime := "-3d"
+	traceIds := []string{"acc04a79582926231f127658da4ff3cf"}
 
-	data, err := reader.GetPgSQLRawData(traceIds, startTime)
-	//data, err := reader.GetMySQLRawData(traceIds, startTime)
-	//data, err := reader.GetHTTPRawData(traceIds, startTime)
-	if err != nil {
-		fmt.Printf("Failed to get raw data, err: %v\n", err)
-		return
-	}
+	//data, _ := reader.GetPgSQLRawData(traceIds, startTime)
+	//data, _ := reader.GetMySQLRawData(traceIds, startTime)
+	data, _ := reader.GetHTTPRawData(traceIds, startTime)
 
 	fmt.Printf("DataStats: %v\n", data.ResultStats)
 	fmt.Printf("DataResults: \n---\n")

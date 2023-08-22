@@ -20,6 +20,11 @@ def http_data(df):
 
     df.time_ = px.time_to_int64(df.time_)
 
+    df.resp_headers = px.substring(df.resp_headers, 0, px.length(df.resp_headers) - 1)
+    df.req_headers = px.substring(df.req_headers, 0, px.length(df.req_headers) - 1)
+    df.resp_body = px.substring(df.resp_body, 0, px.length(df.resp_body) - 1)
+    df.req_body = px.substring(df.resp_body, 0, px.length(df.req_body) - 1)
+
     # Order columns.
     df = df['source', 'destination', 'latency', 'req_path',
             'req_method', 'req_headers', 'req_body', 'resp_status',
