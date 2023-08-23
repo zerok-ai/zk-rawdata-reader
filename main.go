@@ -31,7 +31,7 @@ func main() {
 	}
 
 	startTime := "-3d"
-	traceIds := []string{"acc04a79582926231f127658da4ff3cf"}
+	traceIds := []string{"4d34f902682fd377aa28303c41c11ce1"}
 
 	//data, _ := reader.GetPgSQLRawData(traceIds, startTime)
 	//data, _ := reader.GetMySQLRawData(traceIds, startTime)
