@@ -1,12 +1,25 @@
 import px
 
 def http_data(df):
+    df.trace_parent= px.pluck(df.req_headers, "traceparent")
+    df.trace_id = px.replace(
+            r"[A-Za-z0-9]+\-([A-Za-z0-9]+)\-([A-Za-z0-9]+)\-[A-Za-z0-9]+",
+            df.trace_parent, "\\1")
+
+    # Filter out requests that don't include a trace id.
+    df = df[df.trace_id != ""]
+
     # Filter out data only for requested trace_ids
     df = df[px.equals_any(df.trace_id, ["{{.TraceIds}}"])]
 
+    # Extract span IDs
+    df.span_id = px.replace(
+            r"[A-Za-z0-9]+\-([A-Za-z0-9]+)\-([A-Za-z0-9]+)\-[A-Za-z0-9]+",
+            df.trace_parent, "\\2")
+
     # Order columns.
-    df = df['req_headers', 'req_body', 'resp_headers', 'resp_body', 'trace_id',
-    'req_body_size', 'resp_body_size', 'span_id', 'workload_ids', 'is_truncated']
+    df = df['trace_id', 'span_id', 'req_headers', 'req_body', 'resp_headers', 'resp_body',
+    'req_body_size', 'resp_body_size']
 
     return df
 

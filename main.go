@@ -20,9 +20,13 @@ func main() {
 	//	ClusterKey: "px-api-b5dd5d79-549e-4d65-bf4f-5a7f8840ced1",
 	//}
 	reader := vzReader.VzReader{
-		CloudAddr:  "px.devcloud01.getanton.com:443",
-		ClusterId:  "6c213fb3-a773-4d8b-b0ad-d6e1b720da6f",
-		ClusterKey: "px-api-e0593597-de51-44cd-bc72-6cbdb881b2be",
+		CloudAddr:  "px.loadcloud01.getanton.com:443",
+		ClusterId:  "81fd3738-5cf2-4006-b45f-64f854d0c986",
+		ClusterKey: "px-api-f8d4bc05-381d-469b-ab54-82b7128e58ee",
+
+		//CloudAddr:  "px.devcloud01.getanton.com:443",
+		//ClusterId:  "6c213fb3-a773-4d8b-b0ad-d6e1b720da6f",
+		//ClusterKey: "px-api-e0593597-de51-44cd-bc72-6cbdb881b2be",
 	}
 	err := reader.Init()
 	if err != nil {
@@ -30,8 +34,8 @@ func main() {
 		return
 	}
 
-	startTime := "-3d"
-	traceIds := []string{"4d34f902682fd377aa28303c41c11ce1"}
+	startTime := "-15m"
+	traceIds := []string{"dddddddd0b1cf994cbb79479ba281d3f"}
 
 	//data, _ := reader.GetPgSQLRawData(traceIds, startTime)
 	//data, _ := reader.GetMySQLRawData(traceIds, startTime)
