@@ -6,7 +6,7 @@ def http_data(df):
 
     # Order columns.
     df = df['req_headers', 'req_body', 'resp_headers', 'resp_body', 'trace_id',
-    'req_body_size', 'resp_body_size', 'span_id', 'workload_ids']
+    'req_body_size', 'resp_body_size', 'span_id', 'workload_ids', 'is_truncated']
 
     return df
 
