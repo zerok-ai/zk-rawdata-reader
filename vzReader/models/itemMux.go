@@ -9,7 +9,7 @@ import (
 
 type ItemType interface {
 	// Will need to maintain a list of all the models in this type interface
-	HttpRawDataModel | MySQLRawDataModel | PgSQLRawDataModel
+	HttpRawDataModel | MySQLRawDataModel | PgSQLRawDataModel | UPIDToServiceMapModel
 }
 
 func New[itemType ItemType]() *ItemMapMux[itemType] {

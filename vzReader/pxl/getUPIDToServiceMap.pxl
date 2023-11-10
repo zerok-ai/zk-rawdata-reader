@@ -1,0 +1,21 @@
+import px
+
+df = px.DataFrame(table='process_stats', start_time="-20m")
+
+def get_upid_to_service_map(df):
+    df.service = df.ctx['service']
+    service_df = df["upid", "service"]
+
+    # Filter out empty service names and internal services.
+    service_df = service_df[service_df.service != ""]
+    service_df = service_df[px.logicalNot(px.contains(service_df.service, "pl/"))]
+    service_df = service_df[px.logicalNot(px.contains(service_df.service, "px-operator/"))]
+    service_df = service_df[px.logicalNot(px.contains(service_df.service, "zk-client/"))]
+    service_df = service_df[px.logicalNot(px.contains(service_df.service, "kube-system/"))]
+
+    # Group by upid and service name.
+    service_df = service_df.groupby(["upid","service"]).agg()
+    return service_df
+
+df = get_upid_to_service_map(df)
+px.display(df)
