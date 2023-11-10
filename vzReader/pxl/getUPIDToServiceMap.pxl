@@ -4,6 +4,7 @@ df = px.DataFrame(table='process_stats', start_time="-20m")
 
 def get_upid_to_service_map(df):
     df.service = df.ctx['service']
+    df.upid = px.upid_to_string(df.upid)
     service_df = df["upid", "service"]
 
     # Filter out empty service names and internal services.
