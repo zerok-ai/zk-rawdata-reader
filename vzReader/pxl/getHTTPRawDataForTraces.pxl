@@ -1,0 +1,15 @@
+import px
+
+def http_data(df):
+    # Filter out data only for requested trace_ids
+    df = df[px.equals_any(df.trace_id, ["{{.TraceIds}}"])]
+
+    # Order columns.
+    df = df['trace_id', 'span_id', 'req_headers', 'req_body', 'resp_headers', 'resp_body',
+    'req_body_size', 'resp_body_size']
+
+    return df
+
+df = px.DataFrame(table='http_events', start_time="{{.StartTime}}")
+df = http_data(df)
+px.display(df)
